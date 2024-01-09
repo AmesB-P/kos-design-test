@@ -14,7 +14,14 @@ import google from '../icon/google-icon.svg';
 import twitter from '../icon/twitter-icon.svg';
 import facebook from '../icon/facebook-icon.svg';
 import metamask from '../icon/metamask-icon.svg';
-
+import EmailIcon from '../icon/EmailIcon.svg';
+import lock from '../icon/lock-icon.svg';
+import hidePassword from '../icon/hide-password-icon.svg';
+import showPassword from '../icon/show-password-icon.svg';
+import Arrow from '../icon/Arrow-icon.svg';
+import ArrowInBox from '../icon/Arrow_in_Box_Right.svg';
+import Copyright from '../icon/Copyright.svg';
+import Sticker from '../icon/Sticker_animated_looped.svg';
 
 
 declare module "framer-motion" {
@@ -48,7 +55,7 @@ const Login: FC = () => {
         // Clear the interval when the component unmounts
         return () => clearInterval(flashingInterval);
     }, []);
-    // console.log('isFlashing', isFlashing)
+
 
     const [isHovered, setHovered] = useState(false);
     const [isHoveredSlide, setHoveredSlide] = useState(false);
@@ -69,6 +76,38 @@ const Login: FC = () => {
         },
     };
 
+    const otherLoginList = [
+        {
+            icon: facebook,
+            alt: 'facebook'
+        },
+        {
+            icon: google,
+            alt: 'google'
+        },
+        {
+            icon: twitter,
+            alt: 'twitter'
+        },
+        {
+            icon: metamask,
+            alt: 'metamask'
+        },
+    ]
+
+    const [isShowPassord, setIsShowPassord] = useState<boolean>(false);
+    const [passwordType, setPasswordType] = useState<string>('password');
+    const showPasswordFn = async () => {
+        try {
+            setIsShowPassord((prev) => {
+                setPasswordType(() => !prev ? 'text' : 'password')
+                return !prev
+            })
+        } catch (error) {
+
+        }
+    }
+
 
     return (
         <>
@@ -82,7 +121,7 @@ const Login: FC = () => {
                         </div>
                         {/* <div className='block z-10'> */}
                         <div className='relative z-10 w-full'>
-                            <div className='relative z-10 p-2 flex h-full w-full  '>
+                            <div className='relative z-10 p-2 flex h-full w-max  '>
                                 <motion.div
                                     variants={containerVariants}
                                     initial="initial"
@@ -103,8 +142,7 @@ const Login: FC = () => {
                                         NAKAMOTO
                                         <motion.div
                                             variants={textVariants}
-                                            className={`text-black opacity-0
-                        } hidden md:inline`}
+                                            className={`text-black opacity-0 hidden md:inline`}
                                         // whileHover={{ opacity: isHovered ? 100 : 0 }}
                                         >
                                             .GAMES
@@ -198,55 +236,86 @@ const Login: FC = () => {
 
 
 
-                    <div className='relative w-full h-full grid grid-cols-4  justify-center items-center overflow-auto lg:overflow-hidden p-6 lg:p-0 '>
-                        <div className='col-span-1 bg-fuchsia-400'></div>
+                    {/* <div className=' w-full h-full grid grid-cols-4  justify-center items-center overflow-auto lg:overflow-hidden p-6 lg:p-0 '> */}
+                    <div className=' w-full h-full grid grid-cols-1 justify-center items-center overflow-auto lg:overflow-hidden p-6 lg:p-0 '>
+                        <div className=' w-full h-full col-span-1 grid grid-cols-4  justify-center items-center overflow-auto lg:overflow-hidden p-6 lg:p-0 '>
+                            <div className='col-span-1 bg-fuchsia-400'></div>
 
-                        <div className='col-span-4 lg:col-span-2 block justify-center items-center'>
-                            <div className='flex place-content-between p-2 uppercase font-black border-b border-[#18181C]'>
-                                <div>
-                                    Login
-                                </div>
-                                <div>
-                                    <motion.div>
-                                        button
-                                    </motion.div>
-                                </div>
-                            </div>
-                            <div id="content-login" className='p-0 m-0 lg:pt-10 lg:pb-40'>
-                                <div className='leading-6 space-y-4 '>
-                                    <div id='email' className='space-y-2'>
-                                        <span className='uppercase'>email address</span>
-                                        <input placeholder={`Email`} type={`email`} className={`w-full h-10 p-2 bg-[#18181C] border border-[#232329] rounded-xl `} />
-                                        {/* <input placeholder={`${<Image src={email} alt={`email`}/>} Email`} type={`email`} className='w-full h-10 bg-[#18181C] border border-[#232329] rounded-xl' /> */}
+                            <div className='col-span-4 lg:col-span-2 block justify-center items-center'>
+                                <div className='flex place-content-between p-2 uppercase font-black border-b border-[#18181C]'>
+                                    <div>
+                                        Login
                                     </div>
-                                    <div id='password' className='space-y-2'>
-                                        <span className='uppercase'>password</span>
-                                        <input placeholder='Password' type={`password`} className='w-full' />
-                                        <span className='uppercase'>a number or symbol, atleast 6 characters</span>
+                                    <div>
+                                        <motion.div>
+                                            button
+                                        </motion.div>
                                     </div>
                                 </div>
-                                <div className='w-full block grid-cols-3 gap-4 sm:grid mt-4'>
-                                    <AnimatedButton title='Register' className={'w-max bg-red-700 overflow-hidden'} />
-                                    <AnimatedButton title='Login' className={'w-max col-span-2  bg-amber-950'} />
+                                <div id="content-login" className='p-0 m-0 lg:pt-10 lg:pb-40'>
+                                    <div className='leading-6 space-y-4 '>
+                                        <div id='email' className='space-y-2'>
+                                            <span className='uppercase text-xs text-[#70727B]'>email address</span>
+                                            <div className={`w-full h-10 p-2 flex justify-start items-center space-x-2 bg-[#18181C] border border-[#232329] rounded-xl hover:border-[#7B5BE6]`}>
+                                                <Image src={EmailIcon} alt={`email`} className={`w-6 h-6`} />
+                                                <input placeholder={`Email`} type={`email`} className={`placeholder:text-[#70727B] bg-transparent w-full h-auto border-0 focus:border-orange-400`} />
+                                            </div>
+
+                                            {/* <input placeholder={`${<Image src={email} alt={`email`}/>} Email`} type={`email`} className='w-full h-10 bg-[#18181C] border border-[#232329] rounded-xl' /> */}
+                                        </div>
+                                        <div id='password' className='space-y-2'>
+                                            <span className='uppercase text-xs text-[#70727B]'>password</span>
+                                            <div className={`w-full h-10 p-2 flex justify-start items-center space-x-2 bg-[#18181C] border border-[#232329] rounded-xl hover:border-[#7B5BE6]`}>
+                                                <Image src={lock} alt={`email`} className={`w-6 h-6`} />
+                                                <input placeholder={`Password`} type={passwordType} className={`placeholder:text-[#70727B]placeholder:text-[#70727B] bg-transparent w-full h-auto border-0 hover:border-0  focus:border-0`} />
+                                                <motion.span whileTap={{ scale: 0.8 }} onClick={showPasswordFn}><Image src={isShowPassord ? showPassword : hidePassword} alt={`email`} className={`w-6 h-6`} /></motion.span>
+                                            </div>
+                                            {/* <input placeholder='Password' type={`password`} className='w-full' /> */}
+                                            <span className='uppercase text-xs text-[#4E5057]'>a number or symbol, atleast 6 characters</span>
+                                        </div>
+                                    </div>
+                                    <div className='w-full block grid-cols-3 gap-4 sm:grid mt-4'>
+                                        {/* <AnimatedButton title='Register' icon={``} className={'w-max bg-transparent border border-[#232329] p-4 rounded-full overflow-hidden'} /> */}
+                                        <motion.div
+                                            whileHover={{
+                                                scaleY: 1.2,
+                                                originY: 0
+                                            }}
+                                            className='w-full h-fit flex justify-center items-center bg-transparent border border-[#232329] p-4 rounded-full overflow-hidden hover:flex-grow-0 hover:flex-shrink-0 '
+                                        >
+                                            Register
+                                        </motion.div>
+                                        <AnimatedButton title='Login' icon={ArrowInBox} className={'w-full h-full col-span-2 flex justify-center items-center bg-[#7B5BE6] rounded-full'} />
+                                    </div>
+                                    <div className='uppercase flex justify-end col-span-1 text-xs text-[#70727B] font-black mt-4'>
+                                        forget password
+                                    </div>
                                 </div>
-                                <div className='uppercase flex justify-end col-span-1'>
-                                    forget password
-                                </div>
+
+
+                                <fieldset id='other-login' className='border-t border-[#18181C]  grid-cols-2 grid md:grid-cols-4 gap-3 place-content-evenly  w-full h-auto pt-4 '>
+                                    <legend className='uppercase pr-10 '>or log in with</legend>
+                                    {
+                                        otherLoginList.map((e, index) => (
+                                            <OtherLoginButton key={index} icon={e.icon} alt={e.alt} className={otherLoginClassName} />
+                                        ))
+                                    }
+                                </fieldset>
+
+
                             </div>
 
+                            <motion.div
+                                className='col-span-1 flex justify-end items-start h-full w-full'
+                            >
+                                <Image src={Sticker} alt='Sticker' />
+                            </motion.div>
 
-                            <fieldset id='other-login' className='border-t border-[#18181C]  grid-cols-2 grid md:grid-cols-4 gap-3 place-content-evenly  w-full h-auto pt-4 '>
-                                <legend className='uppercase pr-10 '>or log in with</legend>
-                                <OtherLoginButton icon={facebook} alt='facebook' className={otherLoginClassName}/>
-                                <OtherLoginButton icon={google} alt='google' className={otherLoginClassName}/>
-                                <OtherLoginButton icon={twitter} alt='twitter' className={otherLoginClassName}/>
-                                <OtherLoginButton icon={metamask} alt='metamask' className={otherLoginClassName}/>
-                            </fieldset>
 
                         </div>
 
-                        <div className='col-span-1 bg-red-700'>
-                            
+                        <div className='col-span-1 flex justify-center items-end w-full h-full'>
+                            <Image src={Copyright} alt='Copyright' />
                         </div>
                     </div>
 

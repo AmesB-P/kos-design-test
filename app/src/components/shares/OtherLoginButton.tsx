@@ -4,13 +4,13 @@ import Image from 'next/Image'
 import { FC } from 'react'
 
 
-interface props {
+interface otherLoginProps {
     icon: string | StaticImport,
     alt: string,
     className: string
 }
 
-const OtherLoginButton: FC<props> = ({ icon, alt, className }) => {
+const OtherLoginButton: FC<otherLoginProps> = ({ icon, alt, className }) => {
     return (
         <motion.button className={className}
         >
