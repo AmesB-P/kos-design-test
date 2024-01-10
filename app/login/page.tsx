@@ -108,18 +108,18 @@ const Login: FC = () => {
         }
     }
 
+    const [isButtonHover, setIsButtonHover] = useState<boolean>(false)
+    const [isButtonTap, setIsButtonTap] = useState<boolean>(false)
 
     return (
         <>
             <div className="w-full h-screen md:w-screen p-10 grid-cols-2 items-center justify-center  ">
                 <div className="w-full border-2 h-full p-2 rounded-3xl border-[#18181C] md:flex">
                     <div className="relative w-full h-full rounded-3xl hidden md:inline overflow-hidden">
-                        {/* <div ref={ref} className={`relative w-full bg-no-repeat bg-center bg-cover bg-life-easier overflow-hidden h-full ${isFlashing ? 'modified-red-room' : 'red-room'}`}> */}
 
                         <div className="absolute top-0 left-0 w-full h-full z-0">
                             <RedRoomSvg className='' fill={isFlashing ? 'transparent' : '#FF0000'} />
                         </div>
-                        {/* <div className='block z-10'> */}
                         <div className='relative z-10 w-full'>
                             <div className='relative z-10 p-2 flex h-full w-max  '>
                                 <motion.div
@@ -143,13 +143,11 @@ const Login: FC = () => {
                                         <motion.div
                                             variants={textVariants}
                                             className={`text-black opacity-0 hidden md:inline`}
-                                        // whileHover={{ opacity: isHovered ? 100 : 0 }}
                                         >
                                             .GAMES
                                         </motion.div>
 
                                     </span>
-                                    {/* <span className={` text-black font-black p-1 ${!isHovered ? 'pl-1' : 'pl-0'} flex-shrink-0 flex-grow-0`}>.GAMES</span> */}
 
                                 </motion.div>
                                 <span className='pr-3 flex-shrink-0'>
@@ -230,13 +228,8 @@ const Login: FC = () => {
 
                         </div>
                         {/* </div> */}
-
-
                     </div>
 
-
-
-                    {/* <div className=' w-full h-full grid grid-cols-4  justify-center items-center overflow-auto lg:overflow-hidden p-6 lg:p-0 '> */}
                     <div className=' w-full h-full grid grid-cols-1 justify-center items-center overflow-auto lg:overflow-hidden p-6 lg:p-0 '>
                         <div className=' w-full h-full col-span-1 grid grid-cols-4  justify-center items-center overflow-auto lg:overflow-hidden p-6 lg:p-0 '>
                             <div className='col-span-1 bg-fuchsia-400'></div>
@@ -246,11 +239,32 @@ const Login: FC = () => {
                                     <div>
                                         Login
                                     </div>
-                                    <div>
-                                        <motion.div>
-                                            button
+
+                                    <motion.div
+                                    className={` w-8 h-8 grid grid-cols-1 justify-center items-center p-2 rounded-md ${isButtonTap ?'bg-[#7B5BE6]' : 'bg-[#FF0000]' } `}
+                                    initial={{rotate : isButtonTap ? 0 : 45}}
+                                    whileHover={{
+                                        scale : 1.2,
+                                        rotate : 0
+                                    }}
+                                    whileTap={{
+                                        scale : 0.8
+                                    }}
+ 
+                                    onClick={()=>setIsButtonTap((prev)=>!prev)}
+                                    onMouseEnter={() => setIsButtonHover(true)}
+                                    onMouseLeave={() => setIsButtonHover(false)}
+                                    >
+                                        <motion.div
+                                            initial={{rotate : -45}}
+                                            animate={{rotate : isButtonHover ? 0 : isButtonTap ? 0 : -45}}
+                                            className={`border border-white col-span-1 items-ceter ${isButtonTap ? 'h-4 border-r-0 border-l-0 transition duration-300 flex justify-center items-center ' : ''}`}
+                                        >
+                                            <div className={`${isButtonTap ? 'flex' : 'hidden'} border boder-white w-full`}></div>
+
                                         </motion.div>
-                                    </div>
+                                    </motion.div>
+
                                 </div>
                                 <div id="content-login" className='p-0 m-0 lg:pt-10 lg:pb-40'>
                                     <div className='leading-6 space-y-4 '>
@@ -261,7 +275,6 @@ const Login: FC = () => {
                                                 <input placeholder={`Email`} type={`email`} className={`placeholder:text-[#70727B] bg-transparent w-full h-auto border-0 focus:border-orange-400`} />
                                             </div>
 
-                                            {/* <input placeholder={`${<Image src={email} alt={`email`}/>} Email`} type={`email`} className='w-full h-10 bg-[#18181C] border border-[#232329] rounded-xl' /> */}
                                         </div>
                                         <div id='password' className='space-y-2'>
                                             <span className='uppercase text-xs text-[#70727B]'>password</span>
@@ -270,12 +283,12 @@ const Login: FC = () => {
                                                 <input placeholder={`Password`} type={passwordType} className={`placeholder:text-[#70727B]placeholder:text-[#70727B] bg-transparent w-full h-auto border-0 hover:border-0  focus:border-0`} />
                                                 <motion.span whileTap={{ scale: 0.8 }} onClick={showPasswordFn}><Image src={isShowPassord ? showPassword : hidePassword} alt={`email`} className={`w-6 h-6`} /></motion.span>
                                             </div>
-                                            {/* <input placeholder='Password' type={`password`} className='w-full' /> */}
+
                                             <span className='uppercase text-xs text-[#4E5057]'>a number or symbol, atleast 6 characters</span>
                                         </div>
                                     </div>
                                     <div className='w-full block grid-cols-3 gap-4 sm:grid mt-4'>
-                                        {/* <AnimatedButton title='Register' icon={``} className={'w-max bg-transparent border border-[#232329] p-4 rounded-full overflow-hidden'} /> */}
+
                                         <motion.div
                                             whileHover={{
                                                 scaleY: 1.2,
@@ -306,7 +319,8 @@ const Login: FC = () => {
                             </div>
 
                             <motion.div
-                                className='col-span-1 flex justify-end items-start h-full w-full'
+                                className='hidden lg:flex col-span-1 justify-end items-start h-full w-full'
+                                
                             >
                                 <Image src={Sticker} alt='Sticker' />
                             </motion.div>
