@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
-import Image from 'next/Image'
+import Image from 'next/image'
 import { FC } from 'react'
 
 

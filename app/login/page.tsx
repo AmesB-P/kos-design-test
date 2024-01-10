@@ -1,6 +1,6 @@
 'use client'
 import { useState, FC, useEffect } from 'react';
-import Image from 'next/Image';
+import Image from 'next/image';
 import RedRoomSvg from '../src/customizeSVG/redRoomSvg';
 import LogoIcon from '../icon/LogoIcon.svg';
 import TM from '../icon/TM.svg';
