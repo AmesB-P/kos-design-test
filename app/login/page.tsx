@@ -287,18 +287,18 @@ const Login: FC = () => {
                                             <span className='uppercase text-xs text-[#4E5057]'>a number or symbol, atleast 6 characters</span>
                                         </div>
                                     </div>
-                                    <div className='w-full block grid-cols-3 gap-4 sm:grid mt-4'>
+                                    <div className='w-full h-full block grid-cols-3 gap-4 sm:grid mt-4 space-y-3 md:space-y-0'>
 
                                         <motion.div
                                             whileHover={{
                                                 scaleY: 1.2,
                                                 originY: 0
                                             }}
-                                            className='w-full h-fit flex justify-center items-center bg-transparent border border-[#232329] p-4 rounded-full overflow-hidden hover:flex-grow-0 hover:flex-shrink-0 '
+                                            className='w-full h-fit flex justify-center col-span-3 lg:col-span-1 items-center bg-transparent border border-[#232329] p-4 rounded-full overflow-hidden hover:flex-grow-0 hover:flex-shrink-0 '
                                         >
                                             Register
                                         </motion.div>
-                                        <AnimatedButton title='Login' icon={ArrowInBox} className={'w-full h-full col-span-2 flex justify-center items-center bg-[#7B5BE6] rounded-full'} />
+                                        <AnimatedButton title='Login' icon={ArrowInBox} className={'w-full h-full p-4 col-span-3 lg:col-span-2 flex justify-center items-center bg-[#7B5BE6] rounded-full'} />
                                     </div>
                                     <div className='uppercase flex justify-end col-span-1 text-xs text-[#70727B] font-black mt-4'>
                                         forget password
