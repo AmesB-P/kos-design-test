@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { FC, useState } from 'react'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
-import Image from 'next/Image';
+import Image from 'next/image';
 import ArrowRight from '../../../icon/arrow-right.svg';
 interface props {
   title: string,
