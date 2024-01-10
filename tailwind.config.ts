@@ -13,6 +13,21 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontWeight :{
+        'extra-bold' : '2000'
+      },
+      animation: {
+        'infinite-marquee': 'infinite-marquee 30s linear infinite',
+      },
+      keyframes: {
+        "infinite-marquee": {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        }
+      },
+      transitionDelay: {
+        '5000': '9s',
+      }
     },
   },
   plugins: [],
